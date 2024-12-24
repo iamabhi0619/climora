@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styler.css">
-
-    
-</head>
-<body>
-
-
-    <div>
-        <p class="temp">10</p>
-        <p class="cityName">Kolkata</p>
-
-        <input type="text" class="input" />
-        <button class="city">Submit</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="weather-app">
+      <div class="search-box">
+        <input type="text" placeholder="Enter city..." />
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="weather-info">
+        <div class="temperature">25&#8451;</div>
+        <div class="feels-like">Feels Like: 23&#8451;</div>
+        <div class="other-section">
+          <div class="tab">
+            <div class="temp-min">
+              <i class="fas fa-temperature-low"></i> Min Temp: 20&#8451;
+            </div>
+            <div class="wind">
+              <i class="fas fa-wind"></i> Wind Speed: 10 km/h
+            </div>
+            <div class="sunrise">
+              <i class="fas fa-sun"></i> Sunrise: 6:30 AM
+            </div>
+          </div>
+          <div class="tab">
+            <div class="temp-max">
+              <i class="fas fa-temperature-high"></i> Max Temp: 28&#8451;
+            </div>
+            <div class="humidity">
+              <i class="fas fa-tint"></i> Humidity: 60%
+            </div>
+            <div class="sunset">
+              <i class="fas fa-moon"></i> Sunset: 6:00 PM
+            </div>
+          </div>
+          <div class="tab"></div>
+        </div>
+      </div>
     </div>
-
-
-
-
-    
-</body>
-<script src="script.js"></script>
+  </body>
 </html>
