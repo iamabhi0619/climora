@@ -12,34 +12,52 @@
   </head>
   <body>
     <div class="weather-app">
-      <div class="search-box">
-        <input type="text" placeholder="Enter city..." />
-        <button><i class="fas fa-search"></i></button>
-      </div>
+      <form class="search-box">
+        <input type="text" placeholder="Enter city..." class="input" />
+        <button class="search-btn" type="submit">
+          <i class="fas fa-search"></i> find
+        </button>
+      </form>
       <div class="weather-info">
-        <div class="temperature">25&#8451;</div>
-        <div class="feels-like">Feels Like: 23&#8451;</div>
+        <div class="main-section">
+          <div class="weather-icon-container">
+            <img src="" alt="" srcset="" class="weather-icon">
+          </div>
+          <div>
+            <div class="temperature"><span class="temp">--</span>&#8451;</div>
+            <div class="feels-like">
+              Feels Like: <span class="feels-like-temp">--</span>&#8451;
+            </div>
+          </div>
+        </div>
+        <p class="description"></p>
         <div class="other-section">
           <div class="tab">
             <div class="temp-min">
-              <i class="fas fa-temperature-low"></i> Min Temp: 20&#8451;
+              <i class="fas fa-temperature-low"></i> Min Temp:
+              <span class="min-temp">--</span>&#8451;
             </div>
             <div class="wind">
-              <i class="fas fa-wind"></i> Wind Speed: 10 km/h
+              <i class="fas fa-wind"></i> Wind Speed:
+              <span class="wind-speed">--</span> km/h
             </div>
             <div class="sunrise">
-              <i class="fas fa-sun"></i> Sunrise: 6:30 AM
+              <i class="fas fa-sun"></i> Sunrise:
+              <span class="sunrise-time">-- AM</span>
             </div>
           </div>
           <div class="tab">
             <div class="temp-max">
-              <i class="fas fa-temperature-high"></i> Max Temp: 28&#8451;
+              <i class="fas fa-temperature-high"></i> Max Temp:
+              <span class="max-temp">--</span>&#8451;
             </div>
             <div class="humidity">
-              <i class="fas fa-tint"></i> Humidity: 60%
+              <i class="fas fa-tint"></i> Humidity:
+              <span class="c-humidity">--</span>%
             </div>
             <div class="sunset">
-              <i class="fas fa-moon"></i> Sunset: 6:00 PM
+              <i class="fas fa-moon"></i> Sunset:
+              <span class="sunset-time">-- PM</span>
             </div>
           </div>
           <div class="tab"></div>
@@ -47,4 +65,5 @@
       </div>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>

@@ -6,8 +6,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to right, #4facfe, #00f2fe);
   color: #fff;
+  background-size: cover;
+  background-position: center;
 }
 
 .weather-app {
@@ -45,9 +46,8 @@ body {
   font-size: 16px;
 }
 
-
-.temperature{
-    font-size: 60px;
+.temperature {
+  font-size: 60px;
 }
 .weather-info {
   margin-top: 20px;
@@ -56,18 +56,45 @@ body {
 .weather-info div {
   margin: 10px 0;
 }
-.feels-like{
-    font-size: 18px;
+.feels-like {
+  font-size: 18px;
 }
-.other-section{
-    width: full;
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
+.other-section {
+  width: full;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
 }
-.tab{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
+.tab {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.main-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+.weather-icon-container {
+  display: none;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+.weather-icon {
+  width: 120%;
+  height: auto;
+  object-fit: cover;
+}
+.weather-icon img {
+  background-color: aliceblue;
+}
+.description {
+  margin: 0;
+  padding: 0;
+  font-size: 23px;
+  text-transform: capitalize;
 }
