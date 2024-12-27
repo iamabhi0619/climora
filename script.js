@@ -22,9 +22,9 @@ if (currentHour >= 6 && currentHour < 18) {
 }
 
 if (day) {
-  document.body.style.backgroundImage = "url('/lightBackground.jpg')";
+  document.body.style.backgroundImage = "url('/assist/lightBackground.jpg')";
 } else {
-  document.body.style.backgroundImage = "url('/nightBackground.jpg')";
+  document.body.style.backgroundImage = "url('/assist/nightBackground.jpg')";
 }
 
 searchBtn.addEventListener("submit", (e) => {
