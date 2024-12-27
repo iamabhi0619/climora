@@ -22,9 +22,9 @@ if (currentHour >= 6 && currentHour < 18) {
 }
 
 if (day) {
-  document.body.style.backgroundImage = "url('/assist/lightBackground.jpg')";
+  document.body.style.backgroundImage = "url('https://i.ibb.co/4mgfLhF/light-background.jpg')";
 } else {
-  document.body.style.backgroundImage = "url('/assist/nightBackground.jpg')";
+  document.body.style.backgroundImage = "url('https://i.ibb.co/MpSztWk/night-background.jpg')";
 }
 
 searchBtn.addEventListener("submit", (e) => {
