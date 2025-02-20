@@ -46,7 +46,7 @@ const RightSection = () => {
                     {hourlyData.map((hour) => (
                         <div key={hour.time} className='flex flex-col items-center p-3 rounded-lg gap-1'>
                             <p className='font-medium'>{hour.time}</p>
-                            {weatherIcons[hour.condition]}
+                            {weatherIcons[hour.condition as keyof typeof weatherIcons]}
                             <p className='text-lg font-semibold'>{hour.temp}°</p>
                             <p className='text-sm text-gray-600'>{hour.condition}</p>
                         </div>

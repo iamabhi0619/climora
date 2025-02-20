@@ -48,7 +48,7 @@ const LeftSection = () => {
                         onClick={() => setActiveDay(condition.day)}
                     >
                         <p className='font-semibold text-lg'>{condition.day}</p>
-                        {weatherIcons[condition.condition]}
+                        {weatherIcons[condition.condition as keyof typeof weatherIcons]}
                         <p className='text-lg font-semibold'>{condition.temp}°C</p>
                         <p className='text-sm text-gray-600'>{condition.condition}</p>
                     </div>
