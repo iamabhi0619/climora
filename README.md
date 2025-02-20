@@ -29,7 +29,7 @@ A sleek and modern weather dashboard built with Next.js, powered by OpenWeather 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/climora.git
+   git clone https://github.com/iamabhi0619/climora.git
    ```
 2. Navigate to the project directory:
    ```sh
