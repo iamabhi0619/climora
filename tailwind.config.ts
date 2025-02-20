@@ -9,8 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#5bc4fb",
+        secondary: "#ddbaf5",
+        accent1: "#7e91c0",
+        accent2: "#d4cae2",
+        dark1: "#035681",
+        dark2: "#3f3855"
+      },
+      fontFamily: {
+        nunito: ["Nunito", "sans-serif"],
       },
     },
   },
