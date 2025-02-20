@@ -1,0 +1,22 @@
+{
+    "name": "Climora",
+    "short_name": "Climora",
+    "description": "A Weather App",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ddbaf5",
+    "theme_color": "#ddbaf5",
+    "icons": [
+      {
+        "src": "logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
