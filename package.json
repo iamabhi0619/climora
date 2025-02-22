@@ -9,13 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-leaflet": "^3.0.0",
+    "axios": "^1.7.9",
+    "framer-motion": "^12.4.7",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.475.0",
+    "moment": "^2.30.1",
     "next": "15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/leaflet": "^1.9.16",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
