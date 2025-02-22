@@ -1,6 +1,7 @@
 "use client"
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
+import { getFiveDayAverages } from './weatherUtality';
 
 type WeatherData = {
   coord: { lon: number; lat: number };
@@ -26,16 +27,56 @@ type WeatherData = {
   cod: number;
 };
 
+type ForecastData = {
+  date: string;
+  avg_temp: number;
+  avg_feels_like: number;
+  avg_temp_min: number;
+  avg_temp_max: number;
+  avg_humidity: number;
+  avg_pressure: number;
+  avg_wind_speed: number;
+  avg_wind_deg: number;
+  avg_wind_gust: number;
+  most_common_weather: string;
+  most_common_description: string;
+  most_common_weather_id: string;
+};
+
+type TrimmedForecast = {
+  dt: number;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  weather: Array<{ id: number; main: string; description: string; icon: string }>;
+  wind: { speed: number; deg: number; gust?: number };
+  clouds: { all: number };
+  sys: {pod: string}
+  visibility: number;
+  dt_txt: string;
+}[];
+
 type AppContextType = {
   weather: WeatherData | null;
   loading: boolean;
   cor: { lat: number | null; lon: number | null };
+  forecast: ForecastData[];
+  trimmedForecast: TrimmedForecast;
 };
+
+
 
 const AppContext = createContext<AppContextType | null>(null);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [forecast, setForecast] = useState<ForecastData[]>([]);
+  const [trimmedForecast, setTrimmedForecast] = useState<TrimmedForecast>([]);
   const [loading, setLoading] = useState(false);
   const [cor, setCor] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
 
@@ -71,10 +112,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       if (cor.lat !== null && cor.lon !== null) {
         setLoading(true);
         try {
-          const response = await axios.get(
+          const weatherResponse = await axios.get(
             `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${cor.lat}&lon=${cor.lon}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_API}`
           );
-          setWeather(response.data as WeatherData);
+          setWeather(weatherResponse.data as WeatherData);
+
+          const forecastResponse = await axios.get(
+            `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${cor.lat}&lon=${cor.lon}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_API}`
+          );
+          const forecastData = getFiveDayAverages(forecastResponse.data);
+          setForecast(forecastData);
+          setTrimmedForecast(forecastResponse.data.list.slice(0, 6));
         } catch (error) {
           console.error('Failed to fetch weather data:', error);
         } finally {
@@ -87,7 +135,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [cor]);
 
   return (
-    <AppContext.Provider value={{ weather, loading, cor }}>
+    <AppContext.Provider value={{ weather, loading, cor, forecast, trimmedForecast }}>
       {children}
     </AppContext.Provider>
   );

@@ -1,8 +1,9 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import { Cloud, Sun, CloudRain, CloudFog } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import moment from 'moment';
+import WeatherIcon from './WeatherIcons';
 
 const weatherIcons = {
     "Sunny": <Sun className='text-yellow-500 w-8 h-8' />,
@@ -12,16 +13,7 @@ const weatherIcons = {
 };
 
 const LeftSection = () => {
-    const { weather } = useAppContext();
-    const [activeDay, setActiveDay] = useState("Today");
-    const data = [
-        { day: "Today", temp: 20, condition: "Mist" },
-        { day: "Tue", temp: 12, condition: "Sunny" },
-        { day: "Wed", temp: 32, condition: "Rainny" },
-        { day: "Thu", temp: 20, condition: "Mist" },
-        { day: "Fri", temp: 12, condition: "Sunny" },
-        { day: "Sat", temp: 32, condition: "Rainny" }
-    ];
+    const { weather, forecast } = useAppContext();
     if (!weather || Object.keys(weather).length === 0) {
         return (
             <div className='h-full w-full md:w-9/12 bg-white flex flex-col items-center justify-between py-6 md:py-10 rounded-t-3xl md:rounded-r-3xl shadow-lg animate-pulse'>
@@ -40,14 +32,14 @@ const LeftSection = () => {
                 </div>
 
                 <div className='flex flex-wrap gap-4 md:gap-8 text-center overflow-x-auto w-full items-center justify-center px-4 py-4'>
-                    {data.map((_, index) => (
+                    {forecast.map((_, index) => (
                         <div key={index} className='flex flex-col items-center gap-2 py-2 w-20 md:w-24 rounded-lg bg-gray-300 h-28'></div>
                     ))}
                 </div>
             </div>
         );
     }
-    
+
     return (
         <div className='h-full w-full md:w-9/12 bg-white flex flex-col items-center justify-between py-6 md:py-10 rounded-t-3xl md:rounded-r-3xl shadow-lg'>
             {/* Header */}
@@ -68,17 +60,16 @@ const LeftSection = () => {
 
             {/* Weekly Forecast */}
             <div className='flex flex-wrap gap-4 md:gap-8 text-center text-dark2 overflow-x-auto w-full items-center justify-center px-4 py-4 scrollbar-hide'>
-                {data.map((condition) => (
+                {forecast.map((condition) => (
                     <div
-                        key={condition.day}
-                        className={`flex flex-col items-center gap-2 py-2 w-20 md:w-24 rounded-lg bg-white transition-all cursor-pointer 
-                        ${activeDay === condition.day ? 'border border-dark2 shadow-md' : 'border border-transparent'}`}
-                        onClick={() => setActiveDay(condition.day)}
+                        key={condition.avg_temp}
+                        className="flex flex-col items-center gap-2 py-2 w-20 md:w-24 rounded-lg bg-white transition-all cursor-pointer 
+                        border border-dark2 shadow-md border-transparent"
                     >
-                        <p className='font-semibold text-sm md:text-lg'>{condition.day}</p>
-                        {weatherIcons[condition.condition as keyof typeof weatherIcons]}
-                        <p className='text-md md:text-lg font-semibold'>{condition.temp}°C</p>
-                        <p className='text-xs md:text-sm text-gray-600'>{condition.condition}</p>
+                        <p className='font-semibold text-sm md:text-lg'>{moment(condition.date).format('ddd')}</p>
+                        <WeatherIcon size={20} isDay={true} code={condition.most_common_weather_id} />
+                        <p className='text-md md:text-lg font-semibold'>{Math.round(condition.avg_temp)}°C</p>
+                        <p className='text-xs md:text-sm text-gray-600'>{condition.most_common_weather}</p>
                     </div>
                 ))}
             </div>
