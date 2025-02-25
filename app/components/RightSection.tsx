@@ -4,6 +4,7 @@ import { Droplet, Wind } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import moment from 'moment';
 import WeatherIcon from './WeatherIcons';
+import SunProgress from './SunProgress';
 
 const RightSection = () => {
     const { weather, trimmedForecast } = useAppContext();
@@ -21,7 +22,7 @@ const RightSection = () => {
         <div className='md:h-full md:w-3/12 flex w-full flex-col items-center md:py-10 rounded-l-3xl text-dark2 md:gap-3 gap-2 py-5'>
 
             <div className='flex w-full justify-between px-4 sm:hidden'>
-                <p className='text-xl md:text-2xl font-semibold'>{weather?.name}{weather?.sys.country}</p>
+                <p className='text-xl md:text-2xl font-semibold'>{weather?.name}, {weather?.sys.country}</p>
                 <p className='text-xl md:text-xl font-medium md:mt-2'>{moment.unix(weather?.dt ?? 0).format('LL')}</p>
             </div>
 
@@ -50,7 +51,7 @@ const RightSection = () => {
                     </p>
                 </div>
             </div>
-
+            <SunProgress sunrise={moment.unix(weather?.sys.sunrise ?? 0).format('HHmm')} sunset={moment.unix(weather?.sys.sunset ?? 0).format('HHmm')} />
             <div className='w-full'>
                 <p className='text-lg font-semibold md:mt-6 text-center w-full'>Hourly Forecast</p>
                 <div className='md:grid md:grid-cols-3 md:gap-4 gap-3 px-2 md:mt-4 flex items-start justify-between w-full overflow-y-scroll scrollbar-hide'>

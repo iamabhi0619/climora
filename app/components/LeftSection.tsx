@@ -1,16 +1,10 @@
 "use client"
 import React from 'react'
-import { Cloud, Sun, CloudRain, CloudFog } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import moment from 'moment';
 import WeatherIcon from './WeatherIcons';
+import WindIndicator from './WindIndicatorProps';
 
-const weatherIcons = {
-    "Sunny": <Sun className='text-yellow-500 w-8 h-8' />,
-    "Cloudy": <Cloud className='text-gray-500 w-8 h-8' />,
-    "Rainny": <CloudRain className='text-blue-500 w-8 h-8' />,
-    "Mist": <CloudFog className='text-gray-400 w-8 h-8' />
-};
 
 const LeftSection = () => {
     const { weather, forecast } = useAppContext();
@@ -43,7 +37,7 @@ const LeftSection = () => {
     return (
         <div className='h-full w-full md:w-9/12 bg-white flex flex-col items-center justify-between py-6 md:py-10 rounded-t-3xl md:rounded-r-3xl shadow-lg'>
             {/* Header */}
-            <div className='flex items-center w-full justify-between px-4 md:px-16 text-xl md:text-2xl font-nunito text-dark2'>
+            <div className='hidden md:flex items-center w-full justify-between px-4 md:px-16 text-xl md:text-2xl font-nunito text-dark2'>
                 <p className='font-bold'>{weather.name}, {weather.sys.country}</p>
                 <p className='font-semibold'>{moment.unix(weather.dt).format('LL')}</p>
             </div>
@@ -53,27 +47,31 @@ const LeftSection = () => {
                 <p className="text-[70px] md:text-[200px] flex items-start leading-none">
                     {Math.ceil(weather.main.temp)}°<span className="text-4xl md:text-9xl mt-2 md:mt-4">C</span>
                 </p>
-                <p className='text-2xl md:text-4xl flex items-center justify-center gap-3'>
-                    {weatherIcons["Cloudy"]} {weather.weather[0].main}
-                </p>
+            </div>
+            {/* Weekly Forecast */}
+            <div className="w-full px-2">
+                <h3 className="text-lg md:text-xl font-bold text-dark2 mb-4 text-center">Weekly Forecast</h3>
+                <div className="flex items-center gap-4 px-2 scrollbar-hide overflow-y-scroll pb-2 md:justify-center">
+                    {forecast.map((condition) => (
+                        <div
+                            key={condition.date}
+                            className="flex flex-col gap-2 items-center bg-gray-100 shadow-md rounded-xl py-4 px-5 min-w-[120px] md:min-w-[140px]">
+                            <p className="text-lg md:text-lg font-bold">{moment(condition.date).format('ddd')}</p>
+                            <div className=' flex gap-3'>
+                                <div className="flex flex-col items-center">
+                                    <WeatherIcon size={32} isDay={true} code={condition.most_common_weather_id} />
+                                    <p className="text-lg font-semibold">{Math.round(condition.avg_temp)}°C</p>
+                                    <p className="text-xs md:text-sm text-gray-600">{condition.most_common_weather}</p>
+                                </div>
+                                <WindIndicator speed={Math.round(condition.avg_wind_speed)} direction={condition.avg_wind_deg} />
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {/* Weekly Forecast */}
-            <div className='flex flex-wrap gap-4 md:gap-8 text-center text-dark2 overflow-x-auto w-full items-center justify-center px-4 py-4 scrollbar-hide'>
-                {forecast.map((condition) => (
-                    <div
-                        key={condition.avg_temp}
-                        className="flex flex-col items-center gap-2 py-2 w-20 md:w-24 rounded-lg bg-white transition-all cursor-pointer 
-                        border border-dark2 shadow-md border-transparent"
-                    >
-                        <p className='font-semibold text-sm md:text-lg'>{moment(condition.date).format('ddd')}</p>
-                        <WeatherIcon size={20} isDay={true} code={condition.most_common_weather_id} />
-                        <p className='text-md md:text-lg font-semibold'>{Math.round(condition.avg_temp)}°C</p>
-                        <p className='text-xs md:text-sm text-gray-600'>{condition.most_common_weather}</p>
-                    </div>
-                ))}
-            </div>
         </div>
+
     )
 }
 
