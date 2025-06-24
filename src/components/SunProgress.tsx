@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import moment from 'moment';
-import { SunMedium, SunriseIcon, SunsetIcon } from 'lucide-react';
+import { IconSunHigh, IconSunrise, IconSunset } from '@tabler/icons-react';
 
 interface SunProgressProps {
     sunrise: string; // '06:00'
@@ -38,11 +38,11 @@ const SunProgress: React.FC<SunProgressProps> = ({ sunrise, sunset }) => {
         <div ref={ref} className="w-full px-8 flex flex-col space-y-3">
             <div className="flex justify-between items-center px-2">
                 <div className="flex flex-col items-center">
-                    <SunriseIcon />
+                    <IconSunrise />
                     <p className="text-xs">Sunrise</p>
                 </div>
                 <div className="flex flex-col items-center">
-                    <SunsetIcon />
+                    <IconSunset />
                     <p className="text-xs">Sunset</p>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const SunProgress: React.FC<SunProgressProps> = ({ sunrise, sunset }) => {
                     animate={sunControls}
                     transition={{ duration: 2, ease: 'easeOut' }}
                 >
-                    <SunMedium className="" />
+                    <IconSunHigh className="" />
                 </motion.div>
 
                 {/* Progress bar */}

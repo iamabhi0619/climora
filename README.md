@@ -1,67 +1,36 @@
-# CLIMORA 🌤️
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A sleek and modern weather dashboard built with Next.js, powered by OpenWeather API. This application displays current weather conditions along with an hourly and weekly forecast, enhanced with smooth animations using Framer Motion.
+## Getting Started
 
-## 🚀 Features
+First, run the development server:
 
-- **Live Weather Updates**: Shows the current temperature, wind speed, and humidity.
-- **Weekly Forecast**: Displays upcoming weather conditions with icons.
-- **Hourly Forecast**: Provides a breakdown of temperature changes throughout the day.
-- **Interactive UI**: Hover effects and active states for enhanced user experience.
-- **Modern Design**: Styled using Tailwind CSS for a clean and responsive layout.
-- **Animated Transitions**: Smooth UI animations powered by Framer Motion.
-- **Dark Mode Support**: Seamlessly switch between light and dark themes.
-- **Fast and Efficient**: Deployed on Vercel for optimal performance.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## 🛠️ Technologies Used
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Next.js**: React framework for server-side rendering and fast performance.
-- **Tailwind CSS**: For responsive and elegant UI.
-- **OpenWeather API**: Fetches real-time weather data.
-- **Framer Motion**: Enables beautiful animations and transitions.
-- **Vercel**: Fast deployment and hosting.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 📸 Screenshots
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-![CLIMORA Dashboard](screenshot.png)
+## Learn More
 
-## 📦 Installation & Setup
+To learn more about Next.js, take a look at the following resources:
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/iamabhi0619/climora.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd climora
-   ```
-3. Install dependencies:
-   ```sh
-   npm install
-   ```
-4. Start the development server:
-   ```sh
-   npm run dev
-   ```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📄 Usage
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- Click on a day in the weekly forecast to highlight it.
-- Hover over hourly forecast cards for an interactive effect.
-- Switch between light and dark modes for better accessibility.
+## Deploy on Vercel
 
-## 🚀 Deployment
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-This app is deployed on **Vercel** for fast and efficient performance.
-
-## 👨‍💻 Contributing
-
-Feel free to fork the repository and submit a pull request. Contributions are welcome! 🎉
-
-## 📜 License
-
-No license available.
-
----
-
-🌟 *Enjoy using CLIMORA? Give it a star on GitHub!* 🌟
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
