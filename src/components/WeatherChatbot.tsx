@@ -2,7 +2,7 @@
 
 import { useLocationStore } from '@/store/locationStore';
 import { useWeatherStore } from '@/store/weatherStore';
-import { IconLoader2, IconLoader3, IconRobotFace, IconSend2 } from '@tabler/icons-react';
+import { IconLoader3, IconRobotFace, IconSend2 } from '@tabler/icons-react';
 import { useState, useRef, useEffect } from 'react';
 
 interface Message {
@@ -17,7 +17,7 @@ export default function WeatherChatbot() {
 
 
     const { weather } = useWeatherStore();
-    const { city, coOrdinates } = useLocationStore();
+    const { city } = useLocationStore();
     const [messages, setMessages] = useState<Message[]>([]);
     // Set initial message only on client to avoid hydration mismatch
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function WeatherChatbot() {
                 },
             ]);
         }
-    }, [city]);
+    }, [city, messages.length]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
@@ -116,7 +116,7 @@ export default function WeatherChatbot() {
 
             setMessages((prev) => [...prev, assistantMessage]);
             setStreamingMessage('');
-        } catch (error) {
+        } catch {
             const errorMessage: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',

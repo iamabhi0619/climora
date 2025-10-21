@@ -50,8 +50,9 @@ export async function POST(req: NextRequest) {
             : 'Weather data is currently unavailable.';
 
         // Build conversation history (last 6 messages)
-        const conversationContext = conversationHistory?.slice(-6)
-            .map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
+        type ConversationMessage = { role: 'user' | 'assistant'; content: string };
+        const conversationContext = (conversationHistory as ConversationMessage[] | undefined)?.slice(-6)
+            .map((msg) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
             .join('\n') || '';
 
         // Construct prompt for Gemini
@@ -75,8 +76,8 @@ Your response:`;
 
         // Try multiple Gemini models in order
         const modelNames = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.5-pro'];
-        let assistantMessage = '';
-        let lastError: any;
+    let assistantMessage = '';
+    let lastError: unknown;
 
         for (const modelName of modelNames) {
             try {
@@ -101,9 +102,13 @@ Your response:`;
 
         return NextResponse.json({ message: assistantMessage, timestamp: new Date().toISOString() });
 
-    } catch (error: any) {
+    } catch (error) {
         console.error('Chat API Error:', error);
-        return NextResponse.json({ message: 'Error: ' + error.message }, { status: 500 });
+        let errorMessage = 'Unknown error';
+        if (error && typeof error === 'object' && 'message' in error && typeof (error as { message?: string }).message === 'string') {
+            errorMessage = (error as { message: string }).message;
+        }
+        return NextResponse.json({ message: 'Error: ' + errorMessage }, { status: 500 });
     }
 }
 
