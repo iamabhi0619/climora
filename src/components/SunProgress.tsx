@@ -24,9 +24,12 @@ const SunProgress: React.FC<SunProgressProps> = ({ sunrise, sunset }) => {
             const sunsetTime = moment(sunset, 'HH:mm');
             const totalDuration = sunsetTime.diff(sunriseTime, 'minutes');
             const currentDuration = now.diff(sunriseTime, 'minutes');
-            let percentage = Math.min((currentDuration / totalDuration) * 100, 100);
+            let percentage = Math.max(0, Math.min((currentDuration / totalDuration) * 100, 100));
             if (now.isAfter(sunsetTime)) {
                 percentage = 100;
+            }
+            if (now.isBefore(sunriseTime)) {
+                percentage = 0;
             }
             setProgress(percentage);
             controls.start({ width: `${percentage}%` });
